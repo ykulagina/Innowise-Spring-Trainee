@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Task 07. Students</title>
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+	<h1>Students</h1>
+	<h3>List of All Students in the University</h3>
+	<h2>Filter Students</h2>
+	<form th:action="@{/view-students}" method="GET">
+		<label for="department">Department:</label>
+	    <select id="department" name="department">
+	        <option value="">All Departments</option>
+	        <option value="CR" th:selected="${department == 'CR'}">CR</option>
+	        <option value="IR" th:selected="${department == 'IR'}">IR</option>
+	        <option value="PR" th:selected="${department == 'PR'}">PR</option>
+	    </select>
+	    <!-- <label for="status">Status:</label>
+	    <select id="status" name="status">
+	        <option value="">All Statuses</option>
+	        <option value="ACTIVE" th:selected="${status == 'ACTIVE'}">ACTIVE</option>
+	        <option value="INACTIVE" th:selected="${status == 'INACTIVE'}">INACTIVE</option>
+	    </select> -->
+	    <button type="submit">Apply Filter</button>
+	    <a th:href="@{/view-students}">Clear</a>
+	    </form>
+	<table>
+		<thead>
+			<th>Lastname</th>
+			<th>Firstname</th>
+			<th>Department</th>
+			<th>Enrollment</th>
+			<th>Status</th>
+		</thead>
+		<tbody>
+			<tr th:if="${students.empty}">
+				<td colspan="5">No students found.</td>
+			</tr>
+			<tr th:each="student : ${students}">
+				<td><span th:text="${student.lastName}">last</span></td>
+				<td><span th:text="${student.firstName}">first</span></td>
+				<td><span th:text="${student.department}">dep</span></td>
+				<td><span th:text="${student.enrollment}">enroll</span></td>
+				<td><span th:text="${student.status}">status</span></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

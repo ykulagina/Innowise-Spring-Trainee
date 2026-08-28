@@ -1,0 +1,23 @@
+content, input[type = "text"] {
+	margin: 20 px;
+}
+.validationError {
+	color: #FF0000;
+	font-size: 10px;
+}
+table {
+	table-layout: fixed;
+	border-collapse: collapse;
+	border: 2px solid #999999;
+	margin: 20px 0.5em 20px;
+}
+tr {
+	padding: 0.6em;
+}
+td, th {
+	vertical-align: top;
+	padding: 0.6em;
+}
+tbody tr:nth-child(odd) {
+  background-color: #dddddd;
+}
