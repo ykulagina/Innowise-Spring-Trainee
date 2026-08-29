@@ -1,6 +1,7 @@
 package com.innowise.spring_practice10.controller;
 
 import com.innowise.spring_practice10.model.ShawarmaOrder;
+import com.innowise.spring_practice10.repository.ShawarmaOrderRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,11 @@ import org.springframework.web.bind.support.SessionStatus;
 @RequestMapping("/orders")
 @SessionAttributes("shawarmaOrder")
 public class ShawarmaOrderController {
+    private ShawarmaOrderRepository shawarmaOrderRepository;
+
+    public ShawarmaOrderController(ShawarmaOrderRepository shawarmaOrderRepository) {
+        this.shawarmaOrderRepository = shawarmaOrderRepository;
+    }
 
     @GetMapping("/current")
     public String orderForm() {
@@ -27,6 +33,7 @@ public class ShawarmaOrderController {
         if (errors.hasErrors()) {
             return "orderForm";
         }
+        this.shawarmaOrderRepository.save(shawarmaOrder);
         log.info("Shawarma order submitted: {}", shawarmaOrder);
         sessionStatus.setComplete();
         return "redirect:/";

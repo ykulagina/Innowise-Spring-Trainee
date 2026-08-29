@@ -22,16 +22,21 @@ public class StudentViewController {
 
     @GetMapping()
     public String filterStudents(@RequestParam(value = "department", required = false) String department, Model model) {
-        List<Student> filteredStudents;
+//        List<Student> filteredStudents;
+//        if (department != null && !department.isEmpty()) {
+//            filteredStudents = this.service.findStudentsByDepartment(department);
+//            model.addAttribute("department", department);
+//            model.addAttribute("students", filteredStudents);
+//        } else {
+//            filteredStudents = this.service.findAllStudents();
+//            model.addAttribute("students", filteredStudents);
+//        }
+        List<Student> students = this.service.findAllStudents();
         if (department != null && !department.isEmpty()) {
-            filteredStudents = this.service.findStudentsByDepartment(department);
+            students = this.service.findStudentsByDepartment(department);
             model.addAttribute("department", department);
-            model.addAttribute("students", filteredStudents);
-        } else {
-            filteredStudents = this.service.findAllStudents();
-            model.addAttribute("students", filteredStudents);
         }
-
+        model.addAttribute("students", students);
         return "studentsAll";
     }
 
