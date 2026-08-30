@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Shawarma Practice</title>
+</head>
+<body>
+	<header>
+		<h1>Login</h1>
+	</header>
+	<content>
+		<div th:if="${error}">Unable to login. Check your username or password.</div>
+		<p>New here? Click <a th:href="@{/register}">this link</a> to register</p>
+		<form method="POST" th:action="@{/login}" id="loginForm">
+			<label for="username">Username:</label>
+			<input type="text" name="username" id="username"></br>
+
+			<label for="password">Password:</label>
+			<input type="password" name="password" id="password"></br>
+
+			<input type="submit" value="Login">
+		</form>
+	</content>
+</body>
+</html>
